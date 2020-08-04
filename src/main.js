@@ -9,9 +9,7 @@ require("./assets/css/index.less");
 //全局iconfont
 require("./assets/fonts/iconfont.css");
 require("./pulgin/router");
-var vue_simplemde_1 = require("vue-simplemde");
-require("simplemde/dist/simplemde.min.css");
-vue_1["default"].component('vue-simplemde', vue_simplemde_1["default"]);
+require("./pulgin/simplemde");
 vue_1["default"].config.productionTip = false;
 process.env.NODE_ENV == 'development' ? window.store = store_1["default"] : '';
 process.env.NODE_ENV == 'development' ? window.router = router_1["default"] : '',

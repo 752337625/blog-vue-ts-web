@@ -11,6 +11,8 @@ const IArticle:AsyncComponent=():any=>import('@/base/IArticle.vue')
 
 const DArticle:AsyncComponent=():any=>import('@/base/DArticle.vue')
 
+const LArticle:AsyncComponent=():any=>import('@/base/LArticle.vue')
+
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
 	{
@@ -36,6 +38,11 @@ const routes: Array<RouteConfig> = [
 			    path:'/Home/DArticle',
 				name:'DArticle',
 			    component:DArticle
+		   },
+		   {
+			  path:'/Home/LArticle',
+			  name:'LArticle',
+			  component:LArticle
 		   }
 	   ]
    },
@@ -49,4 +56,11 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.path === '/Login') return next()
+  //if (to.path === '/Register') return next()
+  let token = window.localStorage.getItem('token')
+  if (!token) return next('/Login')
+  next()
+})
 export default router

@@ -31,7 +31,7 @@
 		Vue
 	} from "vue-property-decorator"
 	@Component({})
-	export default class LArticle extends Vue {
+	export default class DArticle extends Vue {
 		private tableData=[{
           date: '2016-05-03',
           name: '王小虎',
@@ -124,9 +124,9 @@
 	}
 </script>
 <style lang="less" scoped="scoped">
-	 .m-article {
+	.m-article {
 		 .article-item {
 		 	padding: 10px 15px 0 15px;
 		}
-	 }
+	}
 </style>

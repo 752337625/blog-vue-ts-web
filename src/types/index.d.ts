@@ -1,8 +1,8 @@
 export interface userInfo {
   userName: string;
   password:string;
-  IP:string;
-  address:string
+  /* IP:string;
+  address:string */
 }
 
 export interface Blog {

@@ -5,7 +5,7 @@ var https;
 if (process.env.NODE_ENV === "development") {
     https = axios_1["default"].create({
         baseURL: "http://localhost:8082/blog/",
-        timeout: 50000,
+        timeout: 10000,
         withCredentials: true
     });
 }
@@ -13,7 +13,8 @@ else {
     // 生产环境下
     https = axios_1["default"].create({
         baseURL: "http://localhost:8082/blog/",
-        timeout: 50000
+        timeout: 10000,
+        withCredentials: true
     });
 }
 // request 拦截器 axios 的一些配置

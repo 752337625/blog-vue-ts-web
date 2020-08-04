@@ -1,11 +1,15 @@
  export interface State {
-     isCollapse : boolean
+    isCollapse : boolean;
+	username:string;
+	imgUrl:string;
+	 
  
  };
 
  const state: State={
-	 isCollapse:false
-   
+	 isCollapse:false,
+	 username:'',
+	 imgUrl:'',
  }
 
  export default state

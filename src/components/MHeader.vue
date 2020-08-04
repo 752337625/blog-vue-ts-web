@@ -9,17 +9,17 @@
 		<div class="m-header-right">
 			<div class="right-img">
 				<el-image :style="{boxSizing: 'border-box',width:'39px',height: '39px',borderRadius: '50%', marginTop: '5px',border:'2px solid #E6A23C',}"
-				 :src="url" :preview-src-list="srcList" lazy fit="cover">
+				 :src="userinfo.imgURL" :preview-src-list="srcList" lazy fit="cover">
 				</el-image>
 			</div>
 			<div class="right-fun">
 				<el-dropdown trigger="click" placement="bottom-start" @command="handleCommand">
-					<span class="el-dropdown-link">江南一点雨<i class="el-icon-arrow-down el-icon--right"></i>
+					<span class="el-dropdown-link">{{userinfo.userName}}<i class="el-icon-arrow-down el-icon--right"></i>
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item command="1">设置设置设置设置设置设置设置</el-dropdown-item>
 						<el-dropdown-item command="2">主题设置设置设置设置设置设置设置设置</el-dropdown-item>
-						<el-dropdown-item command="3">退出设置设置设置设置</el-dropdown-item>
+						<el-dropdown-item command="3">退出</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
 			</div>
@@ -30,6 +30,7 @@
 	import {
 		Component,
 		Vue,
+		Prop
 	} from "vue-property-decorator";
 	import {
 		loginOutMethod
@@ -40,22 +41,18 @@
 	} from 'vuex-class'
 	@Component( {} )
 	export default class MHeader extends Vue {
-		@State('isCollapse') isCollapse:boolean;
+		@Prop({type:Object}) userinfo:object;
+		@State( 'isCollapse' ) isCollapse: boolean;
+		//private username: string = window.sessionStorage.getItem( `userName` ) || '';
+		//private imgUrl: string = window.sessionStorage.getItem( `imgURL` ) || '';
 		private activeColor: string = '#5654F3';
 		private fontSize: number = 16;
-		private srcList: string[ ] = [ 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-			'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-		];
-		private url: string = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
+		private srcList: string[ ] = [ window.sessionStorage.getItem( `imgURL` ) || '' ];
 		@Mutation( 'SWITHC_ICON' ) SWITHC_ICON: any;
-		created( ) {
-			//this.SWITHC_ICON() // -> store.commit('foo', { value: true })
-		};
 		switchIcon( ) {
 			this.SWITHC_ICON( this.isCollapse )
 		};
 		handleCommand( command: string | number ): void {
-			//console.log(this.$message('click on item ' + command))
 			switch ( command ) {
 				case '1':
 					this.$message( 'click on item ' + command );

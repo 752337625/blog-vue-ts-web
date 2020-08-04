@@ -3,14 +3,15 @@ let https:AxiosInstance|any;
 if (process.env.NODE_ENV === "development") {
   https = axios.create({
     baseURL: "http://localhost:8082/blog/", // api 的 base_url
-    timeout: 50000, // 请求超时时间
+    timeout: 10000, // 请求超时时间
 	withCredentials:true
   });
 } else {
   // 生产环境下
   https = axios.create({
 	baseURL: "http://localhost:8082/blog/",
-    timeout: 50000
+    timeout: 10000,
+	withCredentials:true
   });
 }
 // request 拦截器 axios 的一些配置

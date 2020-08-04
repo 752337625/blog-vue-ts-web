@@ -1,14 +1,15 @@
 <template>
 	<aside class='m-aside' :style="{backgroundColor:actiovColor}">
-		<el-menu   :collapse="isCollapse" :unique-opened="uniqueOpened" default-active="/Home/IArticle" class="el-menu-vertical-demo" router>
-			<el-submenu v-for="(item,key) in menuList" :index="item.index" :key="item.id">
+		<el-menu :collapse="isCollapse" :unique-opened="uniqueOpened" default-active="/Home/IArticle" class="el-menu-vertical-demo"
+		 router>
+			<el-submenu v-for="(item,key) in menuList" :index="item.menuUrl" :key="item.id">
 				<template slot="title">
-					<i :class="item.icon"></i>
-					<span slot="title">{{item.text}}</span>
+					<i :class="item.menuIcon"></i>
+					<span slot="title">{{item.menuText}}</span>
 				</template>
-				<el-menu-item v-for="(children,key) in item.children" :index="children.index" :key="children.id">
-					<i :class="children.icon"></i>
-					<span slot="title">{{children.text}}</span>
+				<el-menu-item v-for="(children,key) in item.children" :index="children.menuUrl" :key="children.id">
+					<i :class="children.menuIcon"></i>
+					<span slot="title">{{children.menuText}}</span>
 				</el-menu-item>
 			</el-submenu>
 		</el-menu>
@@ -17,17 +18,19 @@
 <script lang="ts">
 	import {
 		Component,
-		Vue
+		Vue,
+		Prop
 	} from 'vue-property-decorator'
 	import {
 		State
 	} from 'vuex-class'
 	@Component( {} )
 	export default class MAside extends Vue {
+		@Prop( {type: Array,default: function ( ): object[ ] {return [ ]}} ) menuList!: object[ ];
+		@State( 'isCollapse' ) isCollapse: boolean;
 		private actiovColor: string = "#FFFFFF";
-		@State('isCollapse')isCollapse: boolean;
 		private uniqueOpened: boolean = true;
-		private menuList: object[ ] = [ {
+		/* private menuList: object[ ] = [ {
 			id: '1',
 			index: "1",
 			text: "系統首頁",
@@ -67,7 +70,7 @@
 			text: "网站管理",
 			icon: "el-icon-setting",
 			children: [ ]
-		} ];
+		} ]; */
 	}
 </script>
 <style lang="less" scoped="scoped">

@@ -7,6 +7,7 @@ var Home = function () { return Promise.resolve().then(function () { return requ
 var EPage = function () { return Promise.resolve().then(function () { return require('@/views/EPage.vue'); }); };
 var IArticle = function () { return Promise.resolve().then(function () { return require('@/base/IArticle.vue'); }); };
 var DArticle = function () { return Promise.resolve().then(function () { return require('@/base/DArticle.vue'); }); };
+var LArticle = function () { return Promise.resolve().then(function () { return require('@/base/LArticle.vue'); }); };
 vue_1["default"].use(vue_router_1["default"]);
 var routes = [
     {
@@ -32,6 +33,11 @@ var routes = [
                 path: '/Home/DArticle',
                 name: 'DArticle',
                 component: DArticle
+            },
+            {
+                path: '/Home/LArticle',
+                name: 'LArticle',
+                component: LArticle
             }
         ]
     },
@@ -43,5 +49,14 @@ var routes = [
 ];
 var router = new vue_router_1["default"]({
     routes: routes
+});
+router.beforeEach(function (to, from, next) {
+    if (to.path === '/Login')
+        return next();
+    //if (to.path === '/Register') return next()
+    var token = window.localStorage.getItem('token');
+    if (!token)
+        return next('/Login');
+    next();
 });
 exports["default"] = router;

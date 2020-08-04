@@ -2,6 +2,8 @@
 exports.__esModule = true;
 ;
 var state = {
-    isCollapse: false
+    isCollapse: false,
+    username: '',
+    imgUrl: ''
 };
 exports["default"] = state;

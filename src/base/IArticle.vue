@@ -20,11 +20,11 @@
 				</el-input>
 			</div>
 			<div class="item item-flex">
-				<el-select v-model="blog.articleLabel" placeholder="文章标签" @input="onInput()" clearable multiple>
+				<el-select v-model="blog.articleLabel" placeholder="文章标签" @input="onInput()" multiple filterable allow-create collapse-tags>
 					<el-option v-for="item in articleLabel" :key="item.value" :label="item.label" :value="item.value">
 					</el-option>
 				</el-select>
-				<el-select v-model="blog.articleClassify" placeholder="分类专栏" @input="onInput()" clearable multiple>
+				<el-select v-model="blog.articleClassify" placeholder="分类专栏" @input="onInput()" multiple filterable allow-create collapse-tags>
 					<el-option v-for="item in classify" :key="item.value" :label="item.label" :value="item.value">
 					</el-option>
 				</el-select>
