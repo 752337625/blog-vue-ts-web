@@ -17,6 +17,7 @@
 	import {
 		menuSelectList
 	} from '@/api/home'
+	import {Mutation} from 'vuex-class'
 	@Component( {
 		components: {
 			'MHeader': ( ) => import( '@/components/MHeader.vue' ),
@@ -28,11 +29,13 @@
 		private username: string = '';
 		private menuList:object[]=[];
 		private userinfo:object={};
+		@Mutation('SET_USER_ID') SET_USER_ID:any;
 		beforeCreate( ): void {
 			menuSelectList( ).then( ( res: any ) => {
 				if(res.data.statue!==200)return this.$message.error(res.data.message)
 				this.menuList=res.data.data||[];
-				this.userinfo=res.data.user||{}
+				this.userinfo=res.data.user||{};
+				this.SET_USER_ID(res.data.user.id)
 			} ).catch( ( err: any ) => {
 				console.log( err )
 			} )

@@ -5,6 +5,9 @@ const mutations={
 	 SET_USER_IMG(state:any):void{
 		 state.imgUrl=sessionStorage.getItem(`imgURL`);
 		 state.username=sessionStorage.getItem(`userName`)
+	 },
+	 SET_USER_ID(state:any,id:number){
+		 state.id=id;
 	 }
 }
 

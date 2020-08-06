@@ -47,7 +47,7 @@
 				<vue-simplemde v-model="blog.articleContent" :configs='configs' ref="markdownEditor" :sanitize="true" />
 			</div>
 			<div class="item">
-				<el-button type="primary">发布博客</el-button>
+				<el-button type="primary" @click="saveArticle"> 发布博客</el-button>
 				<el-button type="primary">保存草稿</el-button>
 				<el-button>返回</el-button>
 			</div>
@@ -63,8 +63,11 @@
 		Blog
 	} from '@/types/index';
 	/* import marked from 'marked' */
+	import {State} from 'vuex-class';
 	@Component( {} )
 	export default class IArticle extends Vue {
+		@State('id') id:number;
+		@State('username') username:string;
 		private configs: object = {
 			autofocus: true,
 			status: false,
@@ -156,8 +159,8 @@
 				url: articleImageUrl
 			} ]
 		};
-		saveArticle( ) {
-			console.log( this.blog )
+		saveArticle(){
+			console.log( this.id )
 		}
 	}
 </script>

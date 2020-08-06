@@ -2,6 +2,7 @@
     isCollapse : boolean;
 	username:string;
 	imgUrl:string;
+	id:number;
 	 
  
  };
@@ -10,6 +11,7 @@
 	 isCollapse:false,
 	 username:'',
 	 imgUrl:'',
+	 id:0
  }
 
  export default state
